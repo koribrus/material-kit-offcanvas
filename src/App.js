@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
 
-function App() {
+import Header from './Header';
+import Main from './Main';
+import Footer from './Footer';
+import Navbar from './Navbar';
+import NavbarOffcanvas from './NavbarOffcanvas';
+
+const App = () => {
+  // * custom script for rellax.js init
+  useEffect(() => {
+    const body = document.querySelector('body');
+    const script = document.createElement('script');
+
+    script.type = 'text/javascript';
+    script.text = "let rellax = new Rellax('.rellax');";
+
+    body.appendChild(script);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className='container position-sticky z-index-sticky top-0'>
+        <div className='row'>
+          <div className='col-12'>
+            <div className='d-flex'>
+              {/* <Navbar /> */}
+              <NavbarOffcanvas />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <Header />
+      <Main />
+      <Footer />
+    </>
   );
-}
+};
 
 export default App;
